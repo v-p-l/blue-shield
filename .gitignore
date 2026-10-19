@@ -1,0 +1,5 @@
+# Zip du Chrome Web Store : regénéré par node tools/build-zip.mjs
+dist/
+
+# Réglages Claude Code propres à cette machine
+.claude/settings.local.json

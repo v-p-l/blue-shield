@@ -1,0 +1,255 @@
+/* Shared by the popup and the welcome page: tokens, icons, buttons, the add field, the picker.
+   content/blueshield.css deliberately does NOT use these tokens: what it injects has to look like
+   YouTube, not like this extension. */
+
+:root {
+  --bg: #0e1013;
+  --surface: #171a1f;
+  --surface-2: #20242b;
+  --surface-3: #2b3038;
+  --line: #262b33;
+  --text: #eef2f6;
+  --muted: #9aa4af;
+  --accent: #5ac8fa;
+  --accent-soft: rgba(90, 200, 250, .13);
+  --on-accent: #06202c;
+  --danger: #ff8f8f;
+  --placeholder: #7d8792;
+  --knob: #eef2f6;
+  --hover: rgba(255, 255, 255, .02);
+  --toast-accent: #0b6f99;
+  color-scheme: dark;
+}
+
+/* Chosen in the settings view; theme.js applies it before the first paint. */
+:root[data-theme="light"] {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --surface-2: #eef0f3;
+  --surface-3: #d9dde3;
+  --line: #e2e5ea;
+  --text: #15181d;
+  --muted: #5d6874;
+  --accent: #0574b0;
+  --accent-soft: rgba(5, 116, 176, .1);
+  --on-accent: #ffffff;
+  --danger: #c93434;
+  --placeholder: #8a939d;
+  --knob: #ffffff;
+  --hover: rgba(0, 0, 0, .025);
+  --toast-accent: #5ac8fa;
+  color-scheme: light;
+}
+
+/* Shape, type and motion. Same in both themes. */
+:root {
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Corner radii. Anything outside this scale is geometry, not style: a radius nested inside a
+     padded box (10 − 3 = 7), a circle, a decorative bar. Those stay literal, in place. */
+  --r-xs: 6px;    /* tags, inline icons */
+  --r-sm: 8px;    /* icon buttons, small pills, rows inside a card */
+  --r-md: 10px;   /* buttons, fields, segmented, lists */
+  --r-lg: 12px;   /* cards: a channel, the current tab, the empty state */
+  --r-pill: 999px;
+
+  /* One height for every input and button; the small one for controls inside rows. */
+  --control-h: 36px;
+  --control-sm: 30px;
+
+  /* Type scale. The half-pixel steps are deliberate: measured on the 360px popup. */
+  --fs-xs: 11px;    /* tags, uppercase group titles */
+  --fs-sm: 12px;    /* hints, handles, counts */
+  --fs-md: 12.5px;  /* legends, small buttons, status lines */
+  --fs-base: 13px;  /* body text, inputs, buttons */
+  --fs-lg: 13.5px;  /* channel names */
+  --fs-xl: 14px;    /* view headings, avatar initial */
+
+  --t-fast: .15s;   /* colour and opacity */
+  --t-mid: .2s;     /* a switch changing colour, a view fading */
+  --t-slow: .25s;   /* anything that moves: a knob, a chevron */
+  --ease: cubic-bezier(.16, 1, .3, 1);
+
+  /* One focus ring everywhere. --text, not --accent: it has to stay visible on top of an
+     accent-coloured button too. The offset is per component — 1px where controls sit shoulder to
+     shoulder, 2px elsewhere. */
+  --focus: var(--text);
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --- Buttons ---------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: var(--control-h);
+  padding: 0 14px;
+  border: 0;
+  border-radius: var(--r-md);
+  font-family: inherit;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: filter var(--t-fast) var(--ease), background-color var(--t-fast) var(--ease);
+}
+
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover:not(:disabled) { filter: brightness(1.08); }
+
+/* Same shape as .btn-primary, quieter: the second of two choices. */
+.btn-outline {
+  border: 1px solid var(--surface-3);
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.btn-outline:hover:not(:disabled) { background: var(--surface-3); }
+
+.btn-secondary { background: var(--surface-2); color: var(--text); }
+.btn-secondary:hover { background: var(--surface-3); }
+.btn-added { background: var(--accent-soft); color: var(--accent); }
+.btn-added svg { width: 14px; height: 14px; stroke-width: 2.5; }
+
+.btn:disabled { opacity: .55; cursor: progress; }
+.btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* --- Avatar ------------------------------------------------------------------- */
+
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--surface-3);
+  color: var(--text);
+  font-weight: 700;
+  font-size: var(--fs-xl);
+}
+
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- Add field ------------------------------------------------------------------ */
+
+/* The box is the field; its "Ajouter" button sits inside, against the right edge. */
+.field {
+  display: flex;
+  align-items: center;
+  height: var(--control-h);
+  padding: 3px;
+  border: 1px solid var(--surface-3);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  transition: border-color var(--t-fast) var(--ease), background-color var(--t-fast) var(--ease);
+}
+
+.field:hover { border-color: color-mix(in srgb, var(--text) 25%, transparent); }
+.field:focus-within { border-color: var(--accent); background: var(--surface-2); }
+
+.field input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0 9px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+}
+
+.field input::placeholder { color: var(--placeholder); }
+.field input:focus { outline: none; }
+/* Inside the field's 3px padding: 10 − 3. */
+.field .btn { flex: none; height: 100%; padding: 0 12px; border-radius: calc(var(--r-md) - 3px); font-size: var(--fs-md); }
+
+/* .hint is permanent helper text, .status transient feedback; both read as secondary. */
+.hint { margin-top: 6px; color: var(--muted); font-size: var(--fs-sm); }
+.hint:empty { display: none; }
+
+.status { margin-top: 6px; color: var(--muted); font-size: var(--fs-md); }
+.status:empty { display: none; }
+.status.is-error { color: var(--danger); }
+.status.is-ok { color: var(--accent); }
+
+/* Shown in place of a list that a search emptied. */
+.no-match { padding: 14px 4px; color: var(--muted); text-align: center; }
+
+/* --- Subscriptions picker (shared/ui.js) ---------------------------------------- */
+
+/* minmax(0, 1fr): a long name ellipsizes instead of widening the list. */
+.picker {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  list-style: none;
+}
+
+.picker:empty { display: none; }
+
+.picker-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; }
+.picker-row + .picker-row { border-top: 1px solid var(--line); }
+.picker-row .avatar { width: 30px; height: 30px; font-size: var(--fs-sm); }
+.picker-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+
+.picker-row .btn { height: var(--control-sm); padding: 0 12px; border-radius: var(--r-sm); font-size: var(--fs-md); }
+
+.picker-row.is-skeleton .avatar,
+.picker-row.is-skeleton .skeleton-bar,
+.picker-row.is-skeleton .btn { background: var(--surface-2); animation: pulse 1.2s ease-in-out infinite alternate; }
+.skeleton-bar { display: block; width: 55%; height: 10px; border-radius: 5px; }
+.picker-row.is-skeleton .btn { width: 72px; }
+
+@keyframes pulse { to { opacity: .45; } }
+
+/* --- Search field ------------------------------------------------------------------- */
+
+.search {
+  width: 100%;
+  min-width: 0;
+  height: var(--control-h);
+  padding: 0 12px;
+  border: 1px solid var(--surface-3);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--fs-base);
+  transition: border-color var(--t-fast) var(--ease), background-color var(--t-fast) var(--ease);
+}
+
+.search::placeholder { color: var(--placeholder); }
+.search:hover { border-color: color-mix(in srgb, var(--text) 25%, transparent); }
+.search:focus { outline: none; border-color: var(--accent); background: var(--surface-2); }
+
+/* Example inputs listed under the add field's hint. */
+.examples { display: grid; gap: 2px; margin: 6px 0 0; padding-left: 16px; color: var(--muted); font-size: var(--fs-sm); overflow-wrap: anywhere; }
+
+/* --- Motion ------------------------------------------------------------------------- */
+
+/* Here, not in popup.css: the animations above (and the welcome page) need it too. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

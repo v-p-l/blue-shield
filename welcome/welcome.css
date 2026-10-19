@@ -1,0 +1,167 @@
+@import url("../shared/ui.css");
+
+html { background: var(--bg); }
+
+/* A full page, not a 360px popup: the body text is a step up. The shared controls
+   (.btn, .field, .picker, .search) keep the popup's sizes on purpose — they are the same
+   controls, so they should feel the same. */
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, p { margin: 0; }
+
+[data-icon] { display: inline-flex; }
+
+.page {
+  display: grid;
+  gap: 32px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 16px 48px;
+}
+
+.hero { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.logo { display: block; width: 44px; height: 44px; }
+h1 { font-size: 26px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; }
+
+/* --- Steps ------------------------------------------------------------------------ */
+
+/* Three columns side by side; one column on narrow windows. */
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 16px; margin: 0; padding: 0; list-style: none; }
+@media (max-width: 880px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  transition: border-color var(--t-slow) var(--ease);
+}
+
+.step-mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-weight: 700;
+  font-size: var(--fs-xl);
+  transition: background-color var(--t-slow) var(--ease), color var(--t-slow) var(--ease);
+}
+
+.step-mark [data-icon] { display: none; }
+.step-mark svg { width: 17px; height: 17px; stroke-width: 2.5; }
+
+/* Done: the number becomes a check mark. */
+.step.is-done { border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+.step.is-done .step-mark { background: var(--accent); color: var(--on-accent); }
+.step.is-done .step-num { display: none; }
+.step.is-done .step-mark [data-icon] { display: inline-flex; }
+
+.step-head { display: flex; align-items: center; gap: 12px; }
+.step-head h2 { font-size: 16px; font-weight: 650; line-height: 1.3; }
+
+.step-body { display: grid; align-content: start; gap: 12px; min-width: 0; }
+.step-body > p { color: var(--muted); }
+/* The grid gap already spaces them; their own top margin would double it. */
+.step-body > :is(.hint, .status) { margin: 0; }
+
+/* Toolbar icons drawn inline in the text, like Chrome shows them. */
+.inline-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin: 0 2px;
+  border-radius: var(--r-xs);
+  background: var(--surface-2);
+  color: var(--text);
+  vertical-align: middle;
+}
+
+.done-text { color: var(--accent) !important; font-weight: 600; }
+.step.is-done #pin-text, .step.is-done .mock { display: none; }
+
+/* The list of subscriptions is the tallest thing on the page: cap it and let it scroll. */
+#channels { max-height: 300px; }
+
+/* --- Chrome toolbar mock-up -------------------------------------------------------- */
+
+.mock {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--bg);
+}
+
+.mock-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--surface-2);
+}
+
+.mock-url { flex: 1; height: 26px; border-radius: var(--r-pill); background: var(--surface); }
+.mock-avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--surface-3); }
+
+.mock-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--text);
+}
+
+.mock-btn.is-target { box-shadow: 0 0 0 2px var(--accent); background: var(--accent-soft); }
+
+.mock-n {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 10.5px;
+}
+
+.mock-menu {
+  justify-self: end;
+  display: grid;
+  gap: 2px;
+  width: min(260px, 100%);
+  margin: 8px 12px 12px;
+  padding: 10px 0 6px;
+  border-radius: var(--r-md);
+  background: var(--surface);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .28);
+  font-size: var(--fs-base);
+}
+
+.mock-title { padding: 0 14px 6px; font-weight: 600; }
+
+.mock-row { display: flex; align-items: center; gap: 10px; padding: 6px 10px 6px 14px; }
+.mock-row > span:nth-child(2) { flex: 1; }
+.mock-row img { display: block; }
+.mock-dot { width: 16px; height: 16px; border-radius: 4px; background: var(--surface-3); }
+.mock-line { flex: 1; height: 8px; max-width: 110px; border-radius: 4px; background: var(--surface-2); }

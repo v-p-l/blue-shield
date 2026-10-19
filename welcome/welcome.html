@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blue Shield</title>
+  <link rel="icon" href="../icons/icon-32.png">
+  <link rel="stylesheet" href="welcome.css">
+  <script src="../shared/theme.js"></script>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <img class="logo" src="../icons/logo.svg" width="44" height="44" alt="">
+      <h1 data-i18n="welcomeTitle">Blue Shield installé</h1>
+    </header>
+
+    <ol class="steps">
+      <li id="step-pin" class="step">
+        <div class="step-head">
+          <span class="step-mark" aria-hidden="true"><span class="step-num">1</span><span data-icon="check"></span></span>
+          <h2 data-i18n="stepPinTitle">Épingle Blue Shield</h2>
+        </div>
+        <div class="step-body">
+          <p id="pin-text"></p>
+          <p id="pin-done" class="done-text" data-i18n="stepPinDone" hidden></p>
+          <!-- Chrome's toolbar and extensions menu, drawn: where to click. -->
+          <div class="mock" aria-hidden="true">
+            <div class="mock-bar">
+              <span class="mock-url"></span>
+              <span class="mock-btn is-target"><span data-icon="puzzle"></span><b class="mock-n">1</b></span>
+              <span class="mock-avatar"></span>
+            </div>
+            <div class="mock-menu">
+              <p class="mock-title" data-i18n="mockExtensions">Extensions</p>
+              <div class="mock-row">
+                <img src="../icons/icon-32.png" width="16" height="16" alt="">
+                <span>Blue Shield</span>
+                <span class="mock-btn is-target"><span data-icon="pin"></span><b class="mock-n">2</b></span>
+              </div>
+              <div class="mock-row"><span class="mock-dot"></span><span class="mock-line"></span></div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li id="step-add" class="step">
+        <div class="step-head">
+          <span class="step-mark" aria-hidden="true"><span class="step-num">2</span><span data-icon="check"></span></span>
+          <h2 data-i18n="stepAddTitle">Choisis depuis tes abonnements</h2>
+        </div>
+        <div class="step-body">
+          <input id="search" class="search" type="search" autocomplete="off" spellcheck="false"
+                 data-i18n-placeholder="search" data-i18n-aria-label="searchLabel">
+          <p id="subs-status" class="status" role="status"></p>
+          <ul id="channels" class="picker"></ul>
+          <p id="no-match" class="no-match" hidden data-i18n="noMatch">Aucune chaîne ne correspond.</p>
+        </div>
+      </li>
+
+      <li id="step-link" class="step">
+        <div class="step-head">
+          <span class="step-mark" aria-hidden="true"><span class="step-num">3</span><span data-icon="check"></span></span>
+          <h2><label for="add-input" data-i18n="stepLinkTitle">Ou depuis un lien</label></h2>
+        </div>
+        <div class="step-body">
+          <form id="add-form" class="add">
+            <div class="field">
+              <input id="add-input" type="text" autocomplete="off" spellcheck="false"
+                     data-i18n-placeholder="addPlaceholder" aria-describedby="add-hint add-examples status">
+              <button id="add-submit" class="btn btn-primary" type="submit" data-i18n="add">Ajouter</button>
+            </div>
+            <p id="add-hint" class="hint" data-i18n="addHint">Lien de la chaîne, lien d’une vidéo ou @ du profil.</p>
+            <ul id="add-examples" class="examples">
+              <li>https://www.youtube.com/@KarmineCorpVOD</li>
+              <li>https://www.youtube.com/watch?v=9Esft1NyRoE</li>
+              <li>@KarmineCorpVOD</li>
+            </ul>
+            <p id="status" class="status" role="status"></p>
+          </form>
+          <ul id="link-channels" class="picker"></ul>
+        </div>
+      </li>
+    </ol>
+  </main>
+
+  <script src="../shared/i18n.js"></script>
+  <script src="../shared/dom.js"></script>
+  <script src="../shared/options.js"></script>
+  <script src="welcome.js" type="module"></script>
+</body>
+</html>

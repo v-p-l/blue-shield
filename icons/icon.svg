@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+<title>Blue Shield</title>
+<defs><clipPath id="s"><path d="M64 16 L105 29 V59 C105 85.5 87.58 101.82 64 112 C40.42 101.82 23 85.5 23 59 V29 Z"/></clipPath></defs>
+<path d="M64 16 L105 29 V59 C105 85.5 87.58 101.82 64 112 C40.42 101.82 23 85.5 23 59 V29 Z" fill="#0574b0"/>
+<g clip-path="url(#s)"><g transform="translate(16 16) scale(0.75)"><path d="M18 62 C43.3 22 84.7 22 110 62 C84.7 102 43.3 102 18 62 Z" fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+<circle cx="64" cy="62" r="18" fill="#ffffff"/>
+<line x1="28" y1="26" x2="100" y2="98" stroke="#0574b0" stroke-width="20" stroke-linecap="round"/>
+<line x1="28" y1="26" x2="100" y2="98" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/></g></g>
+</svg>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <title>Blue Shield</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="../shared/theme.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img class="mark" src="../icons/logo.svg" width="28" height="28" alt="">
+      <h1>Blue Shield</h1>
+    </div>
+    <div class="top-actions">
+      <label class="master">
+        <span id="master-label" data-i18n="active">Actif</span>
+        <input type="checkbox" role="switch" id="enabled" class="switch">
+      </label>
+      <button id="settings-open" class="icon-btn" type="button" aria-expanded="false" aria-controls="settings"
+              data-i18n-title="settings" data-i18n-aria-label="settings">
+        <span data-icon="settings"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="add-block" aria-labelledby="add-title">
+      <h2 id="add-title" data-i18n="addChannel">Ajouter une chaîne</h2>
+
+      <div id="current" class="current" hidden>
+        <span id="current-avatar" class="avatar"></span>
+        <div class="current-text">
+          <strong id="current-title"></strong>
+          <span data-i18n="currentTabChannel">Chaîne de l’onglet ouvert</span>
+        </div>
+        <button id="current-add" class="btn btn-primary" type="button">
+          <span data-icon="plus"></span><span data-i18n="add">Ajouter</span>
+        </button>
+      </div>
+
+      <div id="add-choices" class="add-choices">
+        <button id="subs-open" class="btn btn-primary" type="button" aria-expanded="false" aria-controls="subs">
+          <span data-icon="users"></span><span data-i18n="subscriptions">Mes abonnements</span>
+        </button>
+        <button id="link-open" class="btn btn-outline" type="button" aria-expanded="false" aria-controls="add-form">
+          <span data-icon="link"></span><span data-i18n="pasteLink">Depuis un lien</span>
+        </button>
+      </div>
+
+      <form id="add-form" class="add" hidden>
+        <div class="link-row">
+          <button id="link-close" class="icon-btn" type="button" data-i18n-title="back" data-i18n-aria-label="back">
+            <span data-icon="chevronLeft"></span>
+          </button>
+          <div class="field">
+            <input id="add-input" type="text" autocomplete="off" spellcheck="false"
+                   placeholder="ex : youtube.com/@KarmineCorpVOD" data-i18n-placeholder="addPlaceholder"
+                   data-i18n-aria-label="addChannel" aria-describedby="add-hint add-examples status">
+            <button id="add-submit" class="btn btn-primary" type="submit" data-i18n="add">Ajouter</button>
+          </div>
+        </div>
+        <p id="add-hint" class="hint" data-i18n="addHint">Lien de la chaîne, lien d’une vidéo ou @ du profil.</p>
+        <ul id="add-examples" class="examples">
+          <li>https://www.youtube.com/@KarmineCorpVOD</li>
+          <li>https://www.youtube.com/watch?v=9Esft1NyRoE</li>
+          <li>@KarmineCorpVOD</li>
+        </ul>
+        <p id="status" class="status" role="status"></p>
+      </form>
+    </section>
+
+    <section class="channels">
+      <div class="list-head">
+        <h2><span data-i18n="channels">Chaînes</span> <span id="count" class="count"></span></h2>
+        <input id="search" class="search" type="search" autocomplete="off" spellcheck="false" hidden
+               data-i18n-placeholder="search" data-i18n-aria-label="searchLabel">
+      </div>
+      <ul id="list"></ul>
+      <p id="no-match" class="no-match" hidden data-i18n="noMatch">Aucune chaîne ne correspond.</p>
+      <div id="empty" class="empty">
+        <strong data-i18n="emptyTitle">Aucune chaîne pour l’instant</strong>
+        <span data-i18n="emptyText"></span>
+      </div>
+    </section>
+  </main>
+
+  <section id="settings" class="view" hidden>
+    <div class="view-head">
+      <button id="settings-back" class="icon-btn" type="button" data-i18n-title="back" data-i18n-aria-label="back">
+        <span data-icon="chevronLeft"></span>
+      </button>
+      <h2 data-i18n="settings">Réglages</h2>
+    </div>
+
+    <fieldset class="setting">
+      <legend data-i18n="language">Langue</legend>
+      <div id="language-options" class="segmented"></div>
+    </fieldset>
+
+    <fieldset class="setting">
+      <legend data-i18n="theme">Thème</legend>
+      <div class="segmented">
+        <label><input type="radio" name="theme" value="dark">
+          <span class="choice"><span data-icon="moon"></span><span data-i18n="themeDark">Sombre</span></span></label>
+        <label><input type="radio" name="theme" value="light">
+          <span class="choice"><span data-icon="sun"></span><span data-i18n="themeLight">Clair</span></span></label>
+      </div>
+    </fieldset>
+
+    <p id="version" class="version"></p>
+  </section>
+
+  <section id="subs" class="view" hidden>
+    <div class="view-head">
+      <button id="subs-back" class="icon-btn" type="button" data-i18n-title="back" data-i18n-aria-label="back">
+        <span data-icon="chevronLeft"></span>
+      </button>
+      <h2 data-i18n="subscriptions">Mes abonnements</h2>
+    </div>
+    <input id="subs-search" class="search subs-search" type="search" autocomplete="off" spellcheck="false"
+           data-i18n-placeholder="search" data-i18n-aria-label="searchLabel">
+    <p id="subs-status" class="status" role="status"></p>
+    <ul id="subs-list" class="picker"></ul>
+    <p id="subs-no-match" class="no-match" hidden data-i18n="noMatch">Aucune chaîne ne correspond.</p>
+  </section>
+
+  <div id="toast" class="toast" role="status" hidden>
+    <span id="toast-text"></span>
+    <button id="toast-undo" type="button" data-i18n="undo">Annuler</button>
+  </div>
+
+  <script src="../shared/i18n.js"></script>
+  <script src="../shared/dom.js"></script>
+  <script src="../shared/options.js"></script>
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

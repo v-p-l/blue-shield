@@ -1,0 +1,2 @@
+# Garde les fins de ligne LF, comme les fichiers actuels, même avec core.autocrlf sous Windows
+* text=auto eol=lf
