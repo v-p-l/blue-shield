@@ -6,13 +6,15 @@
 
 1. Compte développeur Chrome Web Store : 5 $ une fois (`chrome.google.com/webstore/devconsole`).
 2. `node tools/build-zip.mjs` → `dist/blue-shield-1.0.0.zip`.
-3. URL de la politique de confidentialité, à coller dans le formulaire :
-   `https://v-p-l.github.io/blue-shield/privacy.html` (source : `docs/privacy.html`, publiée par
-   GitHub Pages à chaque push sur `main`).
+3. URL de la politique de confidentialité : `https://v-p-l.github.io/blue-shield/privacy.html`
+   (source : `docs/privacy.html`, publiée par GitHub Pages à chaque push sur `main`). Elle ne se
+   colle pas dans la fiche mais dans l'onglet **Pratiques de confidentialité** du menu de gauche,
+   tout en bas, champ « URL des règles de confidentialité ».
 4. Visuels, dans `store/visuels/` : les 5 captures 1280×800, à téléverser dans cet ordre
    (`capture-1-lecteur.png`, `capture-2-miniatures.png`, `capture-3-commentaires.png`,
-   `capture-4-flou.png`, `capture-5-options.png`), et la petite vignette promo
-   (`vignette-440x280.png`).
+   `capture-4-flou.png`, `capture-5-options.png`), et la petite image promotionnelle
+   (`vignette-440x280.png`). L'image promotionnelle « marquee » (1400×560) est facultative :
+   elle ne sert que si Google met l'extension en avant sur la page d'accueil du Store.
 
 Ordre de mise en avant, partout (visuels, description) : la durée qui disparaît du lecteur,
 puis des miniatures, puis les commentaires ; le reste après.
@@ -21,37 +23,51 @@ puis des miniatures, puis les commentaires ; le reste après.
 
 Blue Shield - anti-spoil YouTube
 
-## Description courte (132 caractères maximum)
+## Résumé (132 caractères maximum)
 
-Cache la durée, la barre de progression et les commentaires des vidéos, chaîne par chaîne. Regarde un match sans savoir s'il est fini.
+Le Store le lit dans le champ `description` de `manifest.json` : le modifier ici ne suffit pas.
+
+```text
+Masque la durée, la barre de progression et les commentaires des vidéos YouTube, chaîne par chaîne.
+```
 
 ## Description complète
 
-Tu regardes un replay de match en 3 vidéos. La barre de progression t'apprend qu'il reste
-10 minutes : tu sais déjà que la partie est pliée. Blue Shield enlève ce qui te spoile.
+À copier tel quel : chaque ligne est un paragraphe ou une puce.
 
-Sur les chaînes que tu choisis, et seulement sur celles-là :
+```text
+Blue Shield masque la durée des vidéos YouTube : la barre de progression, le timer et le badge de durée des miniatures.
 
-• La barre de progression, l'aperçu au survol et la heatmap disparaissent.
-• La durée totale est retirée du lecteur : il ne reste que le temps écoulé.
-• Quatre boutons remplacent la barre pour te déplacer : −1 min, −10 s, +10 s, +1 min.
-• Le mode « temps restant » et les touches 0–9, Début et Fin sont neutralisés (←, →, J et L
-  continuent de fonctionner).
-• Les chapitres sont masqués, dans le lecteur comme dans la description.
-• Les contrôles média de Windows affichent une durée factice.
-• Sur les miniatures, le badge de durée et la barre rouge « déjà vu » disparaissent — sur la
-  page de la chaîne, dans la recherche, sur l'accueil et dans les suggestions.
-• Les commentaires sont masqués ; un bouton les réaffiche quand tu as fini.
-• En option, par chaîne : flouter les miniatures et les titres.
+Tu choisis les chaînes concernées dans le popup. Les autres chaînes restent intactes.
 
-Un bouton œil, dans le lecteur, réaffiche la durée après confirmation — pour cette vidéo
-seulement. Plein écran, mode cinéma et miniplayer sont couverts. La durée des publicités
-reste visible.
+DANS LE LECTEUR
+- Barre de progression masquée, avec l'aperçu au survol et la heatmap
+- Durée totale retirée : seul le temps écoulé reste affiché
+- Boutons pour se déplacer : −1 min, −10 s, +10 s, +1 min
+- Raccourcis qui révèlent la durée bloqués : touches 0 à 9, Début, Fin, mode « temps restant »
+- Chapitres masqués
+- Durée factice dans les contrôles média de Windows
 
-Gratuit, sans compte, sans publicité, sans suivi. Rien ne sort de ton navigateur : ta liste de
-chaînes est stockée par Chrome et suit ton compte Chrome si la synchronisation est activée.
+SUR LES MINIATURES
+- Badge de durée et barre « déjà vu » masqués
+- Sur la page de la chaîne, dans la recherche, sur l'accueil et dans les suggestions
 
-Français et anglais. Thème sombre ou clair.
+COMMENTAIRES
+- Commentaires et chat en replay masqués
+- Un bouton les réaffiche
+
+EN OPTION, PAR CHAÎNE
+- Flouter les miniatures
+- Flouter les titres
+
+Un bouton dans le lecteur réaffiche la durée de la vidéo en cours.
+Plein écran, mode cinéma et miniplayer sont couverts. La durée des publicités reste visible.
+
+Gratuit, sans compte, sans publicité, sans suivi. Les réglages restent dans le navigateur.
+Français et anglais. Thème clair ou sombre.
+
+YouTube est une marque de Google LLC. Blue Shield n'est pas affilié à YouTube.
+```
 
 ## Catégorie
 
