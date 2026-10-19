@@ -1,87 +1,93 @@
 # Blue Shield
 
-Extension Chrome anti-spoil pour YouTube : sur les chaînes que tu choisis, la barre de progression
-disparaît, la durée totale aussi : seul le temps écoulé reste, avec des boutons de saut.
+Anti-spoiler Chrome extension for YouTube: on the channels you choose, the progress bar disappears
+and so does the total duration. Only the elapsed time remains, with seek buttons.
 
-## Installer (2 minutes)
+## Install (2 minutes)
 
-1. Ouvre `chrome://extensions`.
-2. Active **Mode développeur** (en haut à droite).
-3. Clique **Charger l'extension non empaquetée** et choisis ce dossier (`blue-shield`).
-4. Épingle l'icône Blue Shield dans la barre d'outils.
-5. Recharge les onglets YouTube déjà ouverts.
+1. Open `chrome://extensions`.
+2. Turn on **Developer mode** (top right).
+3. Click **Load unpacked** and pick this folder (`blue-shield`).
+4. Pin the Blue Shield icon to the toolbar.
+5. Reload the YouTube tabs that are already open.
 
-## Ajouter une chaîne
+On first install, the list starts with one sample channel, Karmine Corp Replay, so the options can
+be tried on a real channel. Remove it from the popup if you don't need it.
 
-- Sur une vidéo ou la page d'une chaîne : popup → **Ajouter**.
-- Ou colle dans le popup : `https://www.youtube.com/@KarmineCorpVOD`, `@KarmineCorpVOD`,
-  un ID `UC…` ou le lien d'une vidéo de la chaîne.
+## Add a channel
 
-## Ce qui est masqué
+- On a video or a channel page: popup → **Add**.
+- Or paste into the popup: `https://www.youtube.com/@KarmineCorpVOD`, `@KarmineCorpVOD`,
+  a `UC…` ID, or a link to one of the channel's videos.
 
-Chaque chaîne a 4 interrupteurs dans le popup, en deux groupes : **Page de la vidéo** (durée, commentaires) et **Listes de vidéos** (miniatures, titres).
+## What is hidden
 
-| Fuite | Traitement |
+Each channel has 4 switches in the popup, in two groups: **Video page** (duration, comments) and
+**Video lists** (thumbnails, titles).
+
+| Leak | Handling |
 |---|---|
-| Barre de progression, aperçu au survol, heatmap | masqués |
-| Durée totale du timer | retirée, seul le temps écoulé reste (`1:24:37`) |
-| Saut dans la vidéo | boutons `−1 min` `−10 s` `+10 s` `+1 min` à droite du timer |
-| Mode « temps restant » (clic sur le timer) | bloqué |
-| Touches `0`–`9` (saut à X %), `Début`, `Fin` | bloquées (`←` `→` `J` `L` restent actives) |
-| Chapitres (lecteur + description) | masqués |
-| Badge de durée et barre « déjà vu » des miniatures | masqués (page de la chaîne, recherche, accueil, suggestions) |
-| Contrôles média Windows / Chrome | durée factice 9:59:59 |
-| Commentaires et chat replay | remplacés par « Commentaires masqués » + bouton Afficher *(option par chaîne)* |
-| Titres des vidéos de la chaîne | floutés, lisibles après 0,6 s de survol *(option par chaîne, désactivée par défaut)* |
-| Miniatures de la chaîne (ex. « GAME 02 ») | floutées, durée masquée *(option par chaîne, désactivée par défaut)* |
+| Progress bar, hover preview, heatmap | hidden |
+| Total duration in the timer | removed, only the elapsed time remains (`1:24:37`) |
+| Seeking in the video | `−1 min` `−10 s` `+10 s` `+1 min` buttons right of the timer |
+| "Time remaining" mode (click on the timer) | blocked |
+| Keys `0`–`9` (jump to X %), `Home`, `End` | blocked (`←` `→` `J` `L` still work) |
+| Chapters (player + description) | hidden |
+| Duration badge and "watched" bar on thumbnails | hidden (channel page, search, home, suggestions) |
+| Windows / Chrome media controls | fake 9:59:59 duration |
+| Comments and live chat replay | replaced by "Comments hidden" + a Show button *(per-channel option)* |
+| Titles of the channel's videos | blurred, readable after hovering 0.6 s *(per-channel option, off by default)* |
+| Thumbnails of the channel (e.g. "GAME 02") | blurred, duration hidden *(per-channel option, off by default)* |
 
-## Afficher la durée
+## Show the duration
 
-Bouton œil à droite des boutons de saut → confirmation → barre et durée réapparaissent pour
-cette vidéo seulement (jusqu'à la fermeture de l'onglet). L'œil barré remasque sans confirmation.
+Eye button right of the seek buttons → confirm → the bar and the duration come back for this video
+only (until the tab is closed). The crossed-out eye hides them again without confirmation.
 
-Plein écran, mode cinéma et miniplayer utilisent le même lecteur : ils sont couverts.
-La durée des **pubs** reste visible.
+Full screen, theater mode and the miniplayer use the same player: they are covered.
+The duration of **ads** stays visible.
 
-Tant que la chaîne de la vidéo n'est pas identifiée, tout est masqué (fail-closed).
+Until the video's channel is identified, everything is hidden (fail-closed).
 
-## Réglages
+## Settings
 
-Roue dentée à droite de l'interrupteur du popup :
+Gear icon right of the popup's switch:
 
-- **Thème** : sombre (par défaut) ou clair. Il s'applique au popup.
-- **Langue** : français ou anglais. Elle s'applique au popup et aux boutons du lecteur.
-  Sans choix enregistré, la langue suit celle du navigateur.
+- **Theme**: dark (default) or light. It applies to the popup.
+- **Language**: French or English. It applies to the popup and the player buttons.
+  With no saved choice, it follows the browser's language.
 
-## Test de fumée
+## Smoke test
 
 ```
 node tools/smoke.mjs
 ```
 
-Ouvre un Chrome jetable (profil temporaire, tes chaînes et tes cookies ne bougent pas), y charge
-l'extension et vérifie sur le vrai YouTube que la barre, la durée, les badges des miniatures et les
-touches `0`–`9` sont bien neutralisés — avec le contre-test sur une chaîne non listée. Compte
-5 minutes : déconnecté, YouTube sert jusqu'à 3 minutes de pubs avant la vidéo. `--headless` pour
-le lancer sans fenêtre. Sortie non nulle si une vérification échoue.
+Opens a throwaway Chrome (temporary profile: your channels and cookies are not touched), loads the
+extension into it and checks on the real YouTube that the bar, the duration, the thumbnail badges
+and the `0`–`9` keys are neutralized, with the counter-test on a channel that is not listed. Allow
+5 minutes: signed out, YouTube serves up to 3 minutes of ads before the video. Add `--headless` to
+run it without a window. Exits non-zero if a check fails.
 
-## Fichiers
+## Files
 
-- `content/main-world.js` : lit l'ID de chaîne dans les données internes de YouTube, falsifie la Media Session.
-- `content/content.js` : décide quoi masquer, pose `data-blueshield-*` sur `<html>`, bloque les touches.
-- `content/blueshield.css` : le masquage, piloté par ces attributs.
-- `popup/` : gestion des chaînes et réglages (`chrome.storage.sync`).
-- `welcome/` : page ouverte à l'installation (épingler l'icône, choisir des chaînes parmi les abonnements YouTube). `background.js` l'ouvre.
-- `shared/` : tout ce qui sert à plus d'une surface. Les trois fichiers chargés en script classique
-  (le script de contenu ne peut pas être un module) exposent un objet global :
-  - `i18n.js` : les textes français et anglais → `blueshieldI18n`.
-  - `options.js` : la liste des options par chaîne et leurs valeurs par défaut → `blueshieldOptions`.
-    **C'est la seule source** : ajouter une option commence ici.
-  - `dom.js` : `el()`, `svg()` et le jeu d'icônes → `blueshieldDom`.
-- `shared/ui.js` (module) : l'avatar, la ligne de statut, le sélecteur d'abonnements, l'application
-  des textes / du thème / du focus. `shared/ui.css` : les tokens et les composants communs.
-  `shared/channels.js` : retrouver une chaîne depuis un lien, lire les abonnements.
-  `shared/theme.js` pose le thème avant l'affichage.
-- `design/icons/build.mjs` : génère les icônes de `icons/`.
-- `tools/smoke.mjs` : le test de fumée ci-dessus ; `tools/cdp.mjs` : son client DevTools, sans dépendance.
-- `tools/build-zip.mjs` : le zip à téléverser sur le Chrome Web Store (`dist/`). `store/` : les textes de la fiche.
+- `content/main-world.js`: reads the channel ID from YouTube's internal data, fakes the Media Session.
+- `content/content.js`: decides what to hide, sets `data-blueshield-*` on `<html>`, blocks the keys.
+- `content/blueshield.css`: the hiding itself, driven by those attributes.
+- `popup/`: channel management and settings (`chrome.storage.sync`).
+- `welcome/`: page opened on install (pin the icon, pick channels from the YouTube subscriptions).
+  `background.js` opens it, after adding the sample channel.
+- `shared/`: everything used by more than one surface. The three files loaded as classic scripts
+  (a content script can't be a module) expose a global object:
+  - `i18n.js`: the French and English strings → `blueshieldI18n`.
+  - `options.js`: the per-channel options, their defaults and the sample channel → `blueshieldOptions`.
+    **It is the single source**: adding an option starts here.
+  - `dom.js`: `el()`, `svg()` and the icon set → `blueshieldDom`.
+- `shared/ui.js` (module): the avatar, the status line, the subscription picker, applying strings /
+  theme / focus. `shared/ui.css`: the shared tokens and components.
+  `shared/channels.js`: resolving a channel from a link, reading the subscriptions.
+  `shared/theme.js` sets the theme before first paint.
+- `design/icons/build.mjs`: generates the icons in `icons/`.
+- `tools/smoke.mjs`: the smoke test above; `tools/cdp.mjs`: its DevTools client, no dependency.
+- `tools/build-zip.mjs`: the zip to upload to the Chrome Web Store (`dist/`). `store/`: the
+  listing texts.
