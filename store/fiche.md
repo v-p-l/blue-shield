@@ -6,8 +6,9 @@
 
 1. Compte développeur Chrome Web Store : 5 $ une fois (`chrome.google.com/webstore/devconsole`).
 2. `node tools/build-zip.mjs` → `dist/blue-shield-1.0.0.zip`.
-3. Héberger `store/confidentialite.md` sur une URL publique (GitHub Pages, ton VPS) : le
-   formulaire exige un lien, pas un fichier.
+3. URL de la politique de confidentialité, à coller dans le formulaire :
+   `https://v-p-l.github.io/blue-shield/privacy.html` (source : `docs/privacy.html`, publiée par
+   GitHub Pages à chaque push sur `main`).
 4. Captures 1280×800 (5 maximum) : lecteur masqué, popup avec les options d'une chaîne,
    page de chaîne sans durées, page de bienvenue.
 

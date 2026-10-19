@@ -91,3 +91,5 @@ run it without a window. Exits non-zero if a check fails.
 - `tools/smoke.mjs`: the smoke test above; `tools/cdp.mjs`: its DevTools client, no dependency.
 - `tools/build-zip.mjs`: the zip to upload to the Chrome Web Store (`dist/`). `store/`: the
   listing texts.
+- `docs/privacy.html`: the privacy policy, served by GitHub Pages at
+  <https://v-p-l.github.io/blue-shield/privacy.html>.

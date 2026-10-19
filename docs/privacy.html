@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blue Shield — Confidentialité / Privacy</title>
+  <meta name="description" content="Politique de confidentialité de l'extension Chrome Blue Shield. Privacy policy of the Blue Shield Chrome extension.">
+  <style>
+    /* Same palette as the extension (shared/ui.css), following the system theme. */
+    :root {
+      --bg: #f4f5f7;
+      --surface: #ffffff;
+      --border: #d9dde3;
+      --text: #15181d;
+      --muted: #555d68;
+      --accent: #0574b0;
+      color-scheme: light dark;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1013;
+        --surface: #171a1f;
+        --border: #2b3038;
+        --text: #eef2f6;
+        --muted: #a3acb8;
+        --accent: #5ac8fa;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    main { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+    nav { display: flex; gap: .5rem; margin-bottom: 2rem; }
+    nav a {
+      padding: .35rem .8rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: .9rem;
+    }
+    nav a:hover { border-color: var(--accent); }
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem 1.5rem .5rem;
+      margin-bottom: 2rem;
+    }
+    h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 .25rem; }
+    h2 { font-size: 1.05rem; margin: 1.75rem 0 .4rem; }
+    .updated { color: var(--muted); margin: 0 0 1rem; font-size: .9rem; }
+    .lead { font-size: 1.1rem; font-weight: 600; }
+    code { font-size: .9em; overflow-wrap: anywhere; }
+    a { color: var(--accent); }
+    ul { padding-left: 1.25rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <nav>
+      <a href="#fr" lang="fr">Français</a>
+      <a href="#en" lang="en">English</a>
+    </nav>
+
+    <section id="fr" lang="fr">
+      <h1>Politique de confidentialité — Blue Shield</h1>
+      <p class="updated">Dernière mise à jour : 19 octobre 2026</p>
+
+      <p class="lead">Blue Shield ne collecte rien, n'envoie rien et n'a pas de serveur.</p>
+
+      <h2>Ce qui est stocké, et où</h2>
+      <p>La liste des chaînes que tu ajoutes (identifiant, nom, @, image de profil, et les quatre
+        options par chaîne), plus tes réglages : interrupteur général, thème, langue.</p>
+      <p>Tout cela vit dans le stockage de l'extension fourni par Chrome
+        (<code>chrome.storage.sync</code>). Si la synchronisation Chrome est activée sur ton compte,
+        Google réplique ces données entre tes appareils, comme pour tes favoris. Sinon, elles ne
+        quittent pas l'ordinateur. L'auteur de l'extension n'y a pas accès.</p>
+      <p>Désinstaller l'extension efface ces données.</p>
+
+      <h2>Requêtes réseau</h2>
+      <p>L'extension ne contacte que <code>https://www.youtube.com</code>, depuis ton navigateur, pour :</p>
+      <ul>
+        <li>retrouver une chaîne à partir d'un lien, d'un @ ou d'un identifiant que tu colles ;</li>
+        <li>lire la liste de tes abonnements quand tu ouvres « Mes abonnements », afin de te les proposer ;</li>
+        <li>à l'installation, lire l'image de la chaîne d'exemple (Karmine Corp Replay), ajoutée à
+          ta liste pour te montrer les options ; tu peux la retirer.</li>
+      </ul>
+      <p>Ces requêtes partent avec tes cookies YouTube, exactement comme si tu ouvrais la page
+        toi-même. Aucune donnée n'est envoyée à l'auteur ni à un tiers : il n'y a ni serveur, ni
+        analytics, ni publicité, ni traceur.</p>
+
+      <h2>Ce que l'extension lit sur les pages YouTube</h2>
+      <p>Sur <code>youtube.com</code> uniquement : l'identifiant de la chaîne de la vidéo affichée,
+        pour décider si elle doit être masquée. Cette information reste dans l'onglet et n'est
+        jamais enregistrée.</p>
+
+      <h2>Contact</h2>
+      <p><a href="mailto:victor.paoli.louvel@gmail.com">victor.paoli.louvel@gmail.com</a></p>
+    </section>
+
+    <section id="en" lang="en">
+      <h1>Privacy policy — Blue Shield</h1>
+      <p class="updated">Last updated: 19 October 2026</p>
+
+      <p class="lead">Blue Shield collects nothing, sends nothing, and has no server.</p>
+
+      <h2>What is stored, and where</h2>
+      <p>The channels you add (id, name, @handle, avatar, and the four per-channel options), plus
+        your settings: master switch, theme, language.</p>
+      <p>They live in the extension storage provided by Chrome (<code>chrome.storage.sync</code>).
+        With Chrome sync enabled, Google replicates them across your devices, like your bookmarks;
+        otherwise they never leave your computer. The author has no access to them.</p>
+      <p>Uninstalling the extension deletes them.</p>
+
+      <h2>Network requests</h2>
+      <p>The extension only contacts <code>https://www.youtube.com</code>, from your browser, to:</p>
+      <ul>
+        <li>resolve a channel from a link, an @handle or an id you paste;</li>
+        <li>read your subscriptions when you open "My subscriptions", to suggest them;</li>
+        <li>at install, read the picture of the sample channel (Karmine Corp Replay), added to your
+          list to show the options; you can remove it.</li>
+      </ul>
+      <p>These requests carry your YouTube cookies, exactly as if you opened the page yourself.
+        Nothing is sent to the author or to any third party: no server, no analytics, no ads, no
+        tracking.</p>
+
+      <h2>What is read on YouTube pages</h2>
+      <p>On <code>youtube.com</code> only: the channel id of the video being shown, to decide
+        whether to hide it. It stays in the tab and is never stored.</p>
+
+      <h2>Contact</h2>
+      <p><a href="mailto:victor.paoli.louvel@gmail.com">victor.paoli.louvel@gmail.com</a></p>
+    </section>
+  </main>
+</body>
+</html>
