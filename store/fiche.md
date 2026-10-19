@@ -9,8 +9,13 @@
 3. URL de la politique de confidentialité, à coller dans le formulaire :
    `https://v-p-l.github.io/blue-shield/privacy.html` (source : `docs/privacy.html`, publiée par
    GitHub Pages à chaque push sur `main`).
-4. Captures 1280×800 (5 maximum) : lecteur masqué, popup avec les options d'une chaîne,
-   page de chaîne sans durées, page de bienvenue.
+4. Visuels, dans `store/visuels/` : les 5 captures 1280×800, à téléverser dans cet ordre
+   (`capture-1-lecteur.png`, `capture-2-miniatures.png`, `capture-3-commentaires.png`,
+   `capture-4-flou.png`, `capture-5-options.png`), et la petite vignette promo
+   (`vignette-440x280.png`).
+
+Ordre de mise en avant, partout (visuels, description) : la durée qui disparaît du lecteur,
+puis des miniatures, puis les commentaires ; le reste après.
 
 ## Nom
 
@@ -33,10 +38,11 @@ Sur les chaînes que tu choisis, et seulement sur celles-là :
 • Le mode « temps restant » et les touches 0–9, Début et Fin sont neutralisés (←, →, J et L
   continuent de fonctionner).
 • Les chapitres sont masqués, dans le lecteur comme dans la description.
+• Les contrôles média de Windows affichent une durée factice.
 • Sur les miniatures, le badge de durée et la barre rouge « déjà vu » disparaissent — sur la
   page de la chaîne, dans la recherche, sur l'accueil et dans les suggestions.
-• Les contrôles média de Windows affichent une durée factice.
-• En option, par chaîne : masquer les commentaires, flouter les titres et les miniatures.
+• Les commentaires sont masqués ; un bouton les réaffiche quand tu as fini.
+• En option, par chaîne : flouter les miniatures et les titres.
 
 Un bouton œil, dans le lecteur, réaffiche la durée après confirmation — pour cette vidéo
 seulement. Plein écran, mode cinéma et miniplayer sont couverts. La durée des publicités
